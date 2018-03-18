@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
 
     {% include meta.html %}
@@ -11,38 +11,34 @@
     {% include analytics/ai.html %}
     {% include analytics/ga.html %}
 
-  </head>
+</head>
 
-  <body>
-    <div class="wrapper-masthead">
-      <div class="container">
+<body>
+<div class="wrapper-masthead">
+    <div class="container">
         <header class="masthead clearfix">
-          <a href="/" class="site-avatar"><img src="/images/Avatar.webp" /></a>
+            <div class="site-header">
+                <a href="/" class="site-avatar"><img src="/images/Avatar.webp" /></a>
 
-          <div class="site-info">
-            <h1 class="site-name"><a href="/">{{ site.name }}</a></h1>
-            <p class="site-description">{{ site.description }}</p>
-          </div>
+                <div class="site-info">
+                    <h1 class="site-name"><a href="/">{{ site.name }}</a></h1>
+                    <p class="site-description">{{ site.description }}</p>
+                </div>
+            </div>
 
-          <nav>
-            <a href="/">Blog</a>
-            <a href="/about">About</a>
-            <a href="/games">Games</a>
-          </nav>
+            <div class="svg-icons">
+                {% include svg-icons.html %}
+            </div>
+            <nav>
+                <a href="/about">About</a>
+                <a href="/games">Games</a>
+            </nav>
         </header>
-      </div>
     </div>
+</div>
 
-    <div id="main" role="main" class="container">
-      {{ content }}
-    </div>
-
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          {% include svg-icons.html %}
-        </footer>
-      </div>
-    </div>
-  </body>
+<div id="main" role="main" class="container">
+    {{ content }}
+</div>
+</body>
 </html>

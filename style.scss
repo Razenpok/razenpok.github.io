@@ -4,19 +4,15 @@
 @import "reset";
 @import "variables";
 
-
-/**************/
-/* BASE RULES */
-/**************/
-
 html {
   font-size: 100%;
 }
 
 body {
-    background: $white;
+  background: $white;
   font: 18px/1.4 $helvetica;
   color: $darkGray;
+  padding: 32px 0px
 }
 
 .container {
@@ -159,6 +155,15 @@ img {
   }
 }
 
+.site-header {
+  float: left;
+
+  @include mobile {
+    float: none;
+    display: block;
+  }
+}
+
 .site-avatar {
   float: left;
   width: 70px;
@@ -206,15 +211,21 @@ img {
   }
 }
 
-svg {
-  //float: left;
+.svg-icons {
+  float: left;
+  margin-top: 10px;
+
+  @include mobile {
+    float: none;
+    display: block;
+  }
 }
 
 nav {
   float: right;
-  margin-top: 23px; // @TODO: Vertically middle align
   font-family: $helveticaNeue;
   font-size: 18px;
+  margin-top: 12px;
 
   @include mobile {
     float: none;
@@ -271,16 +282,12 @@ nav {
   }
 }
 
-.wrapper-footer {
-  margin-top: 50px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  background-color: $lightGray;
-}
+.entry {
+  margin-bottom: 15px;
 
-footer {
-  padding: 20px 0;
-  text-align: center;
+  p {
+    margin: 0
+  }
 }
 
 @import "code";
