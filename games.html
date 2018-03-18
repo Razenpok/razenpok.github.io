@@ -1,0 +1,13 @@
+---
+layout: default
+---
+
+<div class="posts">
+  {% assign sorted-games = site.games | reverse %}
+  {% for game in sorted-games %}
+  <article class="post">
+    <h1><a href="{{ game.url }}">{{ game.title }}</a></h1>
+    <p>{{ game.excerpt }}</p>
+  </article>
+  {% endfor %}
+</div>

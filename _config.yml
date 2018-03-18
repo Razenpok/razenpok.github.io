@@ -16,6 +16,11 @@ plugins:
 sass:
   style: :compressed
 
+collections:
+  games:
+    output: true
+    permalink: /games/:title
+
 #GitHub settings
 
 ## Overridable
