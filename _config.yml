@@ -1,0 +1,39 @@
+name: Andrei Andreev (aka Razenpok)
+description: Refactoring Ninja
+url: http://refactoring.ninja
+
+permalink: /posts/:title/
+
+exclude:
+  - LICENSE
+  - README.md
+  - CNAME
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+
+sass:
+  style: :compressed
+
+#GitHub settings
+
+## Overridable
+encoding: UTF-8
+kramdown:
+  input: GFM
+  hard_wrap: false
+future: true
+jailed: false
+theme: jekyll-theme-primer
+gfm_quirks: paragraph_end
+
+ ## Non-overridable
+lsi: false
+incremental: false
+highlighter: rouge
+gist:
+  noscript: false
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
