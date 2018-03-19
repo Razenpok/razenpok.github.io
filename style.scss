@@ -257,6 +257,14 @@ nav {
   border-bottom: 1px solid $lightGray;
 }
 
+.posts > .post > .entry {
+  margin-bottom: 15px;
+
+  p {
+    margin: 0
+  }
+}
+
 .posts > .post:last-child {
   padding-bottom: 1em;
   border-bottom: none;
@@ -279,14 +287,6 @@ nav {
   .read-more {
     text-transform: uppercase;
     font-size: 15px;
-  }
-}
-
-.entry {
-  margin-bottom: 15px;
-
-  p {
-    margin: 0
   }
 }
 
