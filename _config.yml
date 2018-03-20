@@ -2,7 +2,7 @@ name: Andrei "Razenpok" Andreev
 description: Refactoring Ninja
 url: https://refactoring.ninja
 
-permalink: /posts/:title/
+permalink: /posts/:title
 
 exclude:
   - LICENSE
