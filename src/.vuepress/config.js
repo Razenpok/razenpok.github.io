@@ -1,6 +1,7 @@
 module.exports = {
   title: 'Refactoring Ninja',
   description: 'Messing with code instead of making releases',
+  dest: 'build',
   themeConfig: {
       nav: [
           { text: 'Github', link: 'https://github.com/Razenpok' },
