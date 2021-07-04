@@ -1,1 +1,5 @@
-Alrighty, let's try to create a blog.
+---
+home: true
+---
+
+<PostsIndex />
