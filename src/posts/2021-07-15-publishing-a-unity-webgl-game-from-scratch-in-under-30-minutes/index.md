@@ -1,6 +1,6 @@
 ---
-date: 2021-07-15
 title: Publishing a Unity WebGL game from scratch in under 30 minutes
+date: 2021-07-15
 excerpt:
   This tutorial is a quick guide to setting up Unity, GitHub Pages, and GitHub
   Actions. You'll create an empty Unity project and deploy it to a web page
