@@ -13,6 +13,10 @@ module.exports = {
   plugins: {
     '@vuepress/google-analytics': {
       'ga': 'UA-89958529-1'
+    },
+    'clean-urls': {
+      normalSuffix: '',
+      indexSuffix: '',
     }
   },
   head: [
