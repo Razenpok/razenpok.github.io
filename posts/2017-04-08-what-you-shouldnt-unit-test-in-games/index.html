@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>What you shouldn&#39;t unit test in games | Refactoring Ninja</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <script async="true" src="https://www.googletagmanager.com/gtag/js?id=G-MZH7HXNHT8"></script>
+    <script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MZH7HXNHT8');</script>
+    <meta name="description" content="Messing with code instead of making releases">
+    
+    <link rel="preload" href="/assets/css/0.styles.4d66737e.css" as="style"><link rel="preload" href="/assets/js/app.3e8f5add.js" as="script"><link rel="preload" href="/assets/js/2.db6ffabd.js" as="script"><link rel="preload" href="/assets/js/4.2d64524f.js" as="script"><link rel="preload" href="/assets/js/7.59747c8b.js" as="script"><link rel="preload" href="/assets/js/9.fdb8f747.js" as="script"><link rel="prefetch" href="/assets/js/10.8781f086.js"><link rel="prefetch" href="/assets/js/11.3fd6980c.js"><link rel="prefetch" href="/assets/js/12.e8de04b9.js"><link rel="prefetch" href="/assets/js/3.9cb78628.js"><link rel="prefetch" href="/assets/js/5.02b5ff6c.js"><link rel="prefetch" href="/assets/js/6.6ca79271.js"><link rel="prefetch" href="/assets/js/8.944a3a26.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.4d66737e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Refactoring Ninja</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="https://github.com/Razenpok" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://www.linkedin.com/in/razenpok/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  LinkedIn
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="/about.html" class="nav-link">
+  About
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="https://github.com/Razenpok" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://www.linkedin.com/in/razenpok/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  LinkedIn
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="/about.html" class="nav-link">
+  About
+</a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="what-you-shouldn-t-unit-test-in-games"><a href="#what-you-shouldn-t-unit-test-in-games" class="header-anchor">#</a> What you shouldn't unit test in games</h1> <p><em>Disclaimer: Images shown here are from the game Divinity: Original Sin which</em> <em>is developed by Larian Studios. Code shown here isn't the real code of the</em> <em>game.</em></p> <p>Hi, you are David, the programmer. For the last couple of months you've been
+assigned to some project with huge legacy code base. To be more precise, to an
+RPG game with turn-based combat. There were some good decisions in the old
+architecture, but mostly there was highly coupled code almost everywhere.</p> <p>Everything is going very well (let's say, there are no deadlines, lol), you
+complete various tasks, refactor all the way and now you've got a task about
+tweaking one of the most interesting parts of the game - turn-based combat.</p> <p><img src="/assets/img/1.1ab6a50e.png" alt="1"></p> <p>You look at all the stuff going on here and find a part that you were assigned
+to tweak - turn queue bar.</p> <p><img src="/assets/img/2.64fc5024.png" alt="2"></p> <p>This bar shows the order of character's turns (see, initiative). So, the first
+goes some white-haired woman, then, er, another white-haired woman (called
+Madora), then four demon-kind guys... you get the point. This queue is not
+static: if character gets slowed/stunned - he/she moves in this queue to the
+right. You look at the code and see this:</p> <div class="language-csharp extra-class"><pre class="language-csharp"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TurnQueueBar</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">ChangeInitiative</span><span class="token punctuation">(</span><span class="token class-name">Character</span> character<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">int</span></span> newValue<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Hundreds of lines that contain game logic and visuals.</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Other Update/Render logic</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>You crawl through this class trying to figure out what game logic actually
+happens over here and after a couple of hours you manage to complete your task.
+Game designers are extatic about changes and propose a dozen of other tweaks.
+You think about amount of time that you will waste if don't do something about
+this code and it makes you shiver. So, armed with <a href="http://www.oodesign.com/single-responsibility-principle.html" target="_blank" rel="noopener noreferrer">SRP<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> (Single Responsibility
+Principle) you decide to separate visuals and logic to ease future changes to
+this code. After you finish separation refactoring you get clearly dedicated
+modules:</p> <div class="language-csharp extra-class"><pre class="language-csharp"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TurnQueueBar</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">readonly</span> <span class="token class-name">TurnQueue</span> turnQueue<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">TurnQueueBar</span><span class="token punctuation">(</span><span class="token class-name">TurnQueue</span> turnQueue<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>turnQueue <span class="token operator">=</span> turnQueue<span class="token punctuation">;</span>
+        turnQueue<span class="token punctuation">.</span>PositionChanged <span class="token operator">+=</span> PositionChanged<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">PositionChanged</span><span class="token punctuation">(</span><span class="token class-name">Character</span> character<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">int</span></span> newPosition<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Visuals of icon moving in the bar.</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Other Update/Render logic</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TurnQueue</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">event</span> <span class="token class-name">Action<span class="token punctuation">&lt;</span>Character<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">&gt;</span></span> PositionChanged<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">AddCharacter</span><span class="token punctuation">(</span><span class="token class-name">Character</span> character<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        character<span class="token punctuation">.</span>InitiativeChanged <span class="token operator">+=</span> InitiativeChanged<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">InitiativeChanged</span><span class="token punctuation">(</span><span class="token class-name">Character</span> character<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">int</span></span> newValue<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Game logic</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>positionChanged<span class="token punctuation">)</span>
+            <span class="token function">PositionChanged</span><span class="token punctuation">(</span>character<span class="token punctuation">,</span> newPosition<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Everything looks cool and dandy and you decide to refactor
+<code>TurnQueue.InitiativeChanged</code> a bit more and whoops... you break something. You
+think &quot;Darn it, I'm tired of refactoring that breaks code. I should clearly
+start unit testing!&quot;, revert code to the initial state and begin to write some
+tests for it. You start with <code>TurnQueue</code> and finish after twenty minutes. Ok,
+great, now new code won't break existing one.</p> <p>You move on to <code>TurnQueueBar</code>, and feel that something is wrong. You try to
+write one test, try again, try write other test logic and other, and other. Your
+tests either do nothing to signal about fails after breaking changes or they
+become very big and brittle. You may even try to extract <code>ITurnQueue</code> interface
+to isolate bar from queue, further making these tests unreliable and introducing
+unnecessary abstractions.</p> <p>So, you are staring at your code and wondering: <em>What's wrong with it?</em> and
+<em>Why can't I test it?</em></p> <blockquote><p>You are trying to unit test fun and visuals.</p></blockquote> <p>Let me bring an analogy:</p> <p>There is one of the most famous patterns in web development called MVC
+(Model-View-Controller). In this pattern there's clear separation between code
+that does business logic (M), code that shows result of this logic to user (V)
+and code that glues these parts together (C).</p> <p><img src="/assets/img/3.c2abd35b.png" alt="3"></p> <p>Most of the time the only part that gets covered by tests is the Model part, as
+it contains business-sensitive operations. On the other hand View contains
+HTML/JS stuff that is VERY hard to test properly for two reasons:</p> <ol><li>Visuals tend to chage much (MUCH) more than business logic =&gt; Tests for Views
+become outdated pretty quickly</li> <li>What will you test? Which pixels are of which color after rendering? On which
+position image in rendered? =&gt; It's pretty hard to figure out proper
+verification process for Views</li></ol> <p>What we have with <code>TurnQueue</code> and <code>TurnQueueBar</code> is very much the same MVC:
+<code>TurnQueue</code> is M and <code>TurnQueueBar</code> contains V and C (they can be separated too,
+that's not the point). So, by trying to test <code>TurnQueueBar</code> you are almost
+tackling HTML/JS testing problem. Pretty pointless, huh?</p> <p>And here goes the <strong>fun</strong> part (pun intended): you can't test the fun of one or
+another visual/feature. This is very important part of V in games and it's just
+impossible to measure/verify (unless you are creating game for robots). Yep, no
+100% code coverage, sorry.</p> <p>But now you are asking me: &quot;Whoa dude, you told nothing about C part of
+<code>TurnQueueBar</code>, should we test it?&quot;. You'll find the answer for this question in
+future posts (hint: no, you shouldn't).</p> <div><script src="https://giscus.app/client.js" data-repo="Razenpok/razenpok.github.io" data-repo-id="MDEwOlJlcG9zaXRvcnkxMjU3NjQ4MTc=" data-category="Announcements" data-category-id="DIC_kwDOB38E0c4B-NIO" data-mapping="pathname" data-reactions-enabled="1" data-theme="light" crossorigin="anonymous" async="async"></script></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.3e8f5add.js" defer></script><script src="/assets/js/2.db6ffabd.js" defer></script><script src="/assets/js/4.2d64524f.js" defer></script><script src="/assets/js/7.59747c8b.js" defer></script><script src="/assets/js/9.fdb8f747.js" defer></script>
+  </body>
+</html>
